@@ -42,6 +42,7 @@ export default class InfiniteScroll extends Component {
 
   componentDidMount() {
     this.pageLoaded = this.props.pageStart;
+    this.originalPageStart = this.props.pageStart;
     this.options = this.eventListenerOptions();
     this.attachScrollListener();
   }
@@ -55,6 +56,12 @@ export default class InfiniteScroll extends Component {
         this.beforeScrollTop;
       this.loadMore = false;
     }
+    
+    if (this.props.pageStart != this.originalPageStart) {
+      this.pageLoaded = this.props.pageStart;
+      this.originalPageStart = this.props.pageStart;
+    }
+    
     this.attachScrollListener();
   }
 
